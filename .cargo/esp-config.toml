@@ -1,0 +1,17 @@
+# Keep user/runtime configuration values in this file.
+#
+# https://docs.espressif.com/projects/rust/esp-hal/1.0.0-beta.1/esp32c6/esp_hal/index.html#additional-configuration
+[env]
+ESP_LOG = "info"
+CONFIG_LOG_MASTER_LEVEL="info"
+
+#ESP_HAL_CONFIG_PLACE_SWITCH_TABLES_IN_RAM=true
+#ESP_HAL_CONFIG_PLACE_ANON_IN_RAM=false
+#ESP_HAL_CONFIG_FLIP_LINK=false
+#ESP_HAL_CONFIG_STACK_GUARD_OFFSET=4096
+#ESP_HAL_CONFIG_STACK_GUARD_VALUE=3740121773
+#ESP_HAL_CONFIG_IMPL_CRITICAL_SECTION=true
+
+DEFMT_LOG="debug"
+ESP_LOG_COLORS="1"
+RUST_LOG="debug"

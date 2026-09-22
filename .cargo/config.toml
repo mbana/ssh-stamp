@@ -2,6 +2,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# Keep compilation settings in this file and user/runtime settings in `esp-config.toml`.
+include = ["esp-config.toml"]
+
 [alias]
 # Every build goes through the xtask runner: `cargo xtask <command>` for
 # project tasks, `cargo xtask <target> <cargo command...>` to forward any
@@ -45,16 +48,7 @@ rustflags = ["-C", "force-frame-pointers", '--cfg', 'getrandom_backend="custom"'
 runner = "espflash flash --baud=921600 --monitor --chip esp32s2"
 rustflags = ["-C", "link-arg=-nostartfiles", '--cfg=feature="esp32s2"', '--cfg', 'getrandom_backend="custom"']
 [target.xtensa-esp32s3-none-elf] # ESP32-S3
-runner = "espflash flash --baud=921600 --monitor --chip esp32s3"
+#  --non-interactive --port /dev/ttyACM0 --flash-freq 80mhz --flash-mode qio --flash-size 16mb
+# 3000000 => 3Mbps
+runner = "espflash flash --baud=3000000 --flash-freq 80mhz --monitor --chip esp32s3"
 rustflags = ["-C", "link-arg=-nostartfiles", '--cfg=feature="esp32s3"', '--cfg', 'getrandom_backend="custom"']
-
-
-# https://docs.espressif.com/projects/rust/esp-hal/1.0.0-beta.1/esp32c6/esp_hal/index.html#additional-configuration
-[env]
-ESP_LOG = "info"
-#ESP_HAL_CONFIG_PLACE_SWITCH_TABLES_IN_RAM=true
-#ESP_HAL_CONFIG_PLACE_ANON_IN_RAM=false
-#ESP_HAL_CONFIG_FLIP_LINK=false
-#ESP_HAL_CONFIG_STACK_GUARD_OFFSET=4096
-#ESP_HAL_CONFIG_STACK_GUARD_VALUE=3740121773
-#ESP_HAL_CONFIG_IMPL_CRITICAL_SECTION=true
